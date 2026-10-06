@@ -1,0 +1,23 @@
+Actual pipeline test run: 06.10.2026 23:24:06,16 
+test_banded_edit_correctness (test_pipeline.AlignmentTests.test_banded_edit_correctness) ... ok
+test_gc_windows_boundary_dropout_and_invalid_coordinates (test_pipeline.AlignmentTests.test_gc_windows_boundary_dropout_and_invalid_coordinates) ... ok
+test_long_exact_anchor_breadth_is_conservative (test_pipeline.AlignmentTests.test_long_exact_anchor_breadth_is_conservative) ... ok
+test_quality_means_handle_unavailable_unmapped_and_empty_reads (test_pipeline.AlignmentTests.test_quality_means_handle_unavailable_unmapped_and_empty_reads) ... ok
+test_reference_breadth_and_depth (test_pipeline.AlignmentTests.test_reference_breadth_and_depth) ... ok
+test_repeat_ambiguity_excluded_from_breadth (test_pipeline.AlignmentTests.test_repeat_ambiguity_excluded_from_breadth) ... ok
+test_sam_contig_boundary_rejected (test_pipeline.AlignmentTests.test_sam_contig_boundary_rejected) ... ok
+test_sam_primary_cigar_and_mapq (test_pipeline.AlignmentTests.test_sam_primary_cigar_and_mapq) ... ok
+test_short_substitution_verification (test_pipeline.AlignmentTests.test_short_substitution_verification) ... ok
+test_unique_reverse_and_unmapped (test_pipeline.AlignmentTests.test_unique_reverse_and_unmapped) ... ok
+test_mismatched_quality_rejected (test_pipeline.FastqTests.test_mismatched_quality_rejected) ... ok
+test_pair_ids_and_count (test_pipeline.FastqTests.test_pair_ids_and_count) ... ok
+test_platform_specific_filtering (test_pipeline.FastqTests.test_platform_specific_filtering) ... ok
+test_qc_and_gzip_stream (test_pipeline.FastqTests.test_qc_and_gzip_stream) ... ok
+test_truncated_fastq_rejected (test_pipeline.FastqTests.test_truncated_fastq_rejected) ... ok
+test_missing_metadata_and_read_denominator (test_pipeline.MetadataTests.test_missing_metadata_and_read_denominator) ... ok
+test_pair_selection_and_seed_reproducibility (test_pipeline.SamplingTests.test_pair_selection_and_seed_reproducibility) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.235s
+
+OK
