@@ -1,0 +1,8 @@
+{
+  "organism": "human",
+  "application": "expression",
+  "budget_usd": 6000,
+  "sample_count": 6,
+  "condition_count": 2,
+  "replicates_per_condition": 3
+}

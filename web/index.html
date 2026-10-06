@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123f37">
+  <meta name="description" content="A transparent sequencing experiment design advisor with real bacterial mapping-pilot evidence and an editable cost model.">
+  <title>Sequencing Experiment Design Advisor</title>
+  <link rel="icon" href="mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="#main" aria-label="Sequencing advisor home"><img src="mark.svg" width="34" height="34" alt=""><span>SEQUENCING<br><b>DESIGN ADVISOR</b></span></a>
+    <nav aria-label="Page sections"><a href="#evidence">Evidence</a><a href="#methodology">Method</a><span class="local-tag"><i></i> Local &amp; private</span></nav>
+  </header>
+  <main id="main">
+    <section class="hero">
+      <div><span class="eyebrow">AITU BIOINFORMATICS · PROJECT 15</span><h1>Design with<br><em>evidence.</em></h1><p>A biological question. A finite budget.<br>A sequencing plan you can explain.</p></div>
+      <div class="hero-aside"><span class="label">THE DECISION CHAIN</span><div class="chain"><span>Question</span><b>→</b><span>Reads</span><b>→</b><span>Limits</span></div><p>Compare platform capability, sampling requirements and full project cost. Keep measured results separate from model predictions.</p><div class="hero-badges"><span>3 platforms</span><span>No external services</span><span>Exportable design</span></div></div>
+    </section>
+    <div class="presets" id="presets" aria-label="Example scenarios"><span>Try a question</span></div>
+    <div class="workspace">
+      <aside class="panel input-panel">
+        <div class="section-head"><span class="step">01</span><div><h2>Your experiment</h2><p>Change assumptions to explore trade-offs.</p></div></div>
+        <form id="design-form">
+          <label class="field">Biological question<select id="application" name="application"><option value="variant">Variant detection · SNVs</option><option value="expression">Expression quantification</option><option value="assembly">Genome assembly</option></select></label>
+          <div class="fields two"><label class="field">Organism<select id="organism" name="organism"><option value="bacteria">Bacterial isolate</option><option value="yeast">Yeast</option><option value="human">Human</option><option value="custom">Custom organism</option></select></label><label class="field">Haploid genome <span>Mb</span><input id="genome_size_mb" name="genome_size_mb" type="number" min="0.001" max="1000000" step="any" required></label></div>
+          <div class="fields two"><label class="field">Budget <span>USD</span><input id="budget_usd" name="budget_usd" type="number" min="1" max="1000000000" step="any" required></label><label class="field">Samples<input id="sample_count" name="sample_count" type="number" min="1" max="100000" step="1" required></label></div>
+          <label class="field">Procurement<select id="procurement" name="procurement"><option value="shared">Shared run · pooled allocation</option><option value="dedicated">Dedicated · whole flow cells</option></select><small>Dedicated runs include the cost of unused output.</small></label>
+          <div id="variant-fields" class="question-fields">
+            <div class="mini-label">VARIANT SAMPLING</div>
+            <div class="fields two"><label class="field">Target allele <span>%</span><input id="allele_fraction" name="allele_fraction" type="number" min="0.001" max="100" step="any" required></label><label class="field">Sampling chance <span>%</span><input id="detection_probability" name="detection_probability" type="number" min="50" max="99.999" step="any" required></label></div>
+            <label class="field">Minimum alternate observations<input id="min_alt_reads" name="min_alt_reads" type="number" min="1" max="100" step="1" required><small>Sampling probability does not account for sequencing errors or caller specificity.</small></label>
+          </div>
+          <div id="assembly-fields" class="question-fields" hidden>
+            <div class="mini-label">ASSEMBLY OBJECTIVE</div>
+            <label class="field">Goal<select id="assembly_goal" name="assembly_goal"><option value="resolve_repeats">Resolve a specified repeat</option><option value="draft">Draft assembly</option></select></label>
+            <label class="field">Repeat span <span>kb</span><input id="repeat_span_kb" name="repeat_span_kb" type="number" min="0" max="10000" step="any" required><small>Planning filter adds 1 kb of unique sequence on each side. Check the full read-length distribution.</small></label>
+          </div>
+          <div id="expression-fields" class="question-fields" hidden>
+            <div class="mini-label">RNA SAMPLING &amp; REPLICATION</div>
+            <label class="field">Goal<select id="expression_goal" name="expression_goal"><option value="gene_counts">Gene-level fragment counts</option><option value="full_length_isoforms">Full-length isoform molecules</option></select></label>
+            <div class="fields two"><label class="field">Conditions<input id="condition_count" name="condition_count" type="number" min="1" max="1000" step="1" required></label><label class="field">Replicates / condition<input id="replicates_per_condition" name="replicates_per_condition" type="number" min="1" max="10000" step="1" required></label></div>
+            <label id="pairs-field" class="field">Assigned read pairs / sample <span>million</span><input id="expression_pairs_millions" name="expression_pairs_millions" type="number" min="0.01" max="10000" step="any" required></label>
+            <label id="long-count-field" class="field" hidden>Assigned long-read molecules / sample <span>million</span><input id="expression_long_reads_millions" name="expression_long_reads_millions" type="number" min="0.01" max="1000" step="any" required></label>
+            <p class="help-note">Genome size is not used to calculate RNA-seq depth. Fragment counts cannot establish differential-expression power.</p>
+          </div>
+          <details class="assumption-details"><summary>Mapping &amp; platform assumptions</summary><div class="fields two"><label class="field">Mapped fraction <span>%</span><input id="mapping_fraction" name="mapping_fraction" type="number" min="1" max="100" step="any" required></label><label class="field">Retained / unique <span>%</span><input id="usable_fraction" name="usable_fraction" type="number" min="1" max="100" step="any" required></label></div><label class="field">Compare platform<select id="platform" name="platform"><option value="auto">All compatible platforms</option><option value="illumina">Illumina short reads</option><option value="pacbio">PacBio HiFi</option><option value="nanopore">Oxford Nanopore</option></select></label><p class="help-note">Retained fraction applies after mapping. Both values are your assumptions and should be replaced with pilot QC estimates.</p></details>
+          <button class="primary" type="submit" id="run-button">Build my design <span>↗</span></button>
+          <div id="form-error" class="error" role="alert" hidden></div>
+        </form>
+      </aside>
+      <section class="results" aria-label="Recommended experiment">
+        <div id="loading" class="panel loading">Preparing the design model…</div>
+        <div id="result-content" hidden>
+          <div class="panel design-card">
+            <div class="design-top"><span class="label light">02 / RECOMMENDED DESIGN</span><span id="status-pill" class="status-pill"></span></div>
+            <h2 id="design-platform"></h2><p id="design-instrument" class="instrument"></p><p id="design-read-length" class="read-length"></p>
+            <div class="metrics"><div><span class="metric-label" id="depth-label">Effective mean depth</span><strong id="depth-value"></strong><small id="depth-note"></small></div><div><span class="metric-label">Project estimate</span><strong id="cost-value"></strong><small id="cost-note"></small></div><div><span class="metric-label" id="limit-label">Sampling threshold</span><strong id="limit-value"></strong><small id="limit-note"></small></div></div>
+            <p id="design-headline" class="design-headline"></p>
+            <div class="card-actions"><button id="export-result" class="ghost">Export design JSON ↓</button><button id="export-scenario" class="ghost">Save input ↓</button></div>
+          </div>
+          <div class="panel rationale"><h3>Why this design</h3><ul id="reasons"></ul><div class="caveat" id="caveats"></div></div>
+          <div class="panel cost-panel"><div class="panel-heading"><div><span class="label">TOTAL COST / USD</span><h3>Count the whole experiment.</h3></div><span class="small-note">Editable assumptions</span></div><div id="cost-chart" class="cost-chart"></div><div id="cost-legend" class="cost-legend"></div><div class="cost-footer"><span id="cost-range"></span><span id="raw-volume"></span></div><details><summary>Cost basis &amp; procurement</summary><p id="cost-provenance"></p><p id="cost-procurement"></p><p class="help-note">The sensitivity range is not a confidence interval. Extraction, shipping, tax, personnel hiring and institutional overhead are excluded. Local quotations can fall outside the range.</p></details></div>
+          <div class="panel alternatives"><div class="panel-heading"><div><span class="label">COMPARE THE ENVELOPE</span><h3>Capability comes before price.</h3></div></div><div class="table-wrap"><table><thead><tr><th>Platform</th><th>Required design</th><th>Estimate</th><th>Decision</th></tr></thead><tbody id="alternatives-body"></tbody></table></div></div>
+        </div>
+      </section>
+    </div>
+    <section class="panel evidence-panel" id="evidence">
+      <div class="section-head"><span class="step">03</span><div><span class="label">MEASURED EVIDENCE</span><h2>What the pilot actually shows.</h2><p>Real downsampling. A deliberately limited endpoint.</p></div><span class="evidence-pill" id="evidence-status"></span></div>
+      <p class="evidence-scope" id="evidence-scope"></p>
+      <div id="evidence-empty" class="empty-state" hidden><span>○</span><div><h3>No measured curves available yet</h3><p>The recommender will label its depth choices as planning priors until the analysis workflow produces evidence.</p></div></div>
+      <div id="evidence-charts" class="chart-grid" hidden><figure><figcaption><h3>Reference breadth</h3><p>Fraction supported by at least one anchored read</p></figcaption><div id="breadth-chart"></div></figure><figure><figcaption><h3>Read anchoring rate</h3><p>Algorithm-specific; not a standard aligner mapping rate</p></figcaption><div id="mapping-chart"></div></figure></div>
+      <div class="chart-key"><span><i class="key short"></i>Illumina pilot</span><span><i class="key long"></i>Nanopore pilot</span><small>Points: seed means. Shading: minimum–maximum across seeds, where provided.</small></div>
+      <div id="pilot-findings" class="pilot-findings"></div>
+      <div class="evidence-limit"><b>Scope of inference</b><p>Mapped reference breadth does not measure SNV recall, expression power or assembly completeness. A bacterial dataset cannot validate depth requirements for other organisms. Sampling seeds are repeated subsets of the same data.</p></div>
+    </section>
+    <section class="method-grid" id="methodology">
+      <div class="panel method-panel"><span class="label">04 / THE MODEL</span><h2>Show the reasoning.</h2><div class="tabs" role="tablist" aria-label="Model information"><button id="tab-sampling" role="tab" aria-selected="true" aria-controls="pane-sampling">Sampling</button><button id="tab-assumptions" role="tab" aria-selected="false" aria-controls="pane-assumptions">Assumptions</button><button id="tab-limits" role="tab" aria-selected="false" aria-controls="pane-limits">Limits</button></div>
+        <div id="pane-sampling" role="tabpanel" aria-labelledby="tab-sampling"><p id="sampling-explanation"></p><div class="formula">P(X ≥ k) = 1 − Σ<sub>j=0…k−1</sub> e<sup>−D·f</sup>(D·f)<sup>j</sup> / j!</div><p class="help-note">D = mean mapped, retained depth; f = alternate-allele fraction; k = minimum alternate observations. The Poisson model represents ideal independent sampling at an accessible locus.</p><div id="sampling-chart"></div><p id="sampling-details" class="help-note"></p></div>
+        <div id="pane-assumptions" role="tabpanel" aria-labelledby="tab-assumptions" hidden><p>Effective depth and raw yield are different quantities:</p><div class="formula">raw Gb = D × genome Gb × samples<br>÷ (mapped fraction × retained fraction)</div><p id="assumption-values"></p><div id="assumption-table" class="table-wrap"></div><p class="help-note">Cost assumptions are stored in the bundled cost configuration. Update them with your institution's quotations and run the design again. Changes are recorded by the exported configuration hash.</p><button id="export-costs" class="text-button">Download current cost assumptions ↓</button></div>
+        <div id="pane-limits" role="tabpanel" aria-labelledby="tab-limits" hidden><ul id="model-limits"></ul><p class="help-note">For a stronger model: compare standard aligner results, call variants against a truth set, downsample RNA counts for power, and evaluate long-read assemblies. The present endpoint cannot replace those experiments.</p></div>
+      </div>
+      <div class="panel source-panel"><span class="label">PROVENANCE &amp; COST CHECKS</span><h2>Trace each claim.</h2><p>Published specifications define the capability envelope. Price benchmarks cover sequencing reagents; the remaining costs are exposed assumptions.</p><div id="benchmark-checks"></div><div id="sources"></div><p class="source-date" id="source-date"></p></div>
+    </section>
+    <footer><div><b>SEQUENCING EXPERIMENT DESIGN ADVISOR</b><p>AITU · Introduction to Bioinformatics · Project 15</p></div><p>Research planning · version 1.0<br>Built to make assumptions visible.</p></footer>
+  </main>
+  <div id="toast" role="status" hidden></div>
+</body>
+</html>

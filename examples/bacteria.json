@@ -1,0 +1,7 @@
+{
+  "organism": "bacteria",
+  "application": "variant",
+  "budget_usd": 1200,
+  "sample_count": 6,
+  "allele_fraction": 1
+}

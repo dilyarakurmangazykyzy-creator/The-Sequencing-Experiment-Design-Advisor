@@ -1,0 +1,8 @@
+{
+  "organism": "bacteria",
+  "application": "assembly",
+  "budget_usd": 3000,
+  "sample_count": 1,
+  "assembly_goal": "resolve_repeats",
+  "repeat_span_kb": 10
+}

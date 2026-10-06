@@ -1,0 +1,7 @@
+{
+  "organism": "human",
+  "application": "variant",
+  "budget_usd": 3000,
+  "sample_count": 1,
+  "allele_fraction": 0.05
+}

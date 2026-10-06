@@ -1,0 +1,6 @@
+[
+  {"id": "bacterial-snv", "label": "Bacterial isolate · SNVs", "input": {"organism": "bacteria", "application": "variant", "budget_usd": 1200, "sample_count": 6, "genome_size_mb": 4.6, "allele_fraction": 1, "detection_probability": 0.95, "min_alt_reads": 3}},
+  {"id": "human-rare", "label": "Human · 5% allele", "input": {"organism": "human", "application": "variant", "budget_usd": 3000, "sample_count": 1, "genome_size_mb": 3100, "allele_fraction": 0.05, "detection_probability": 0.95, "min_alt_reads": 3}},
+  {"id": "bacterial-assembly", "label": "Bacterial · repeat assembly", "input": {"organism": "bacteria", "application": "assembly", "budget_usd": 1500, "sample_count": 2, "genome_size_mb": 4.6, "repeat_span_kb": 8, "assembly_goal": "resolve_repeats"}},
+  {"id": "rna-comparison", "label": "RNA · two conditions", "input": {"organism": "human", "application": "expression", "budget_usd": 3000, "sample_count": 6, "genome_size_mb": 3100, "expression_goal": "gene_counts", "replicates_per_condition": 3, "condition_count": 2, "expression_pairs_millions": 30}}
+]
