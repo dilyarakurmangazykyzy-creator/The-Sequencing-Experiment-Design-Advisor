@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+.cache/
+.snakemake/
+data/raw/*
+!data/raw/.gitkeep
+results/alignments/
+results/quick/
+results/full/
+*.bam
+*.bai
+*.sam
+*.mmi
+*.part
+.DS_Store
