@@ -1,0 +1,2 @@
+# Optional acceleration for full pilot. Advisor and quick pipeline use standard Python.
+numpy==2.3.5
