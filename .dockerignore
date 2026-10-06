@@ -1,0 +1,11 @@
+.git
+.cache
+**/__pycache__
+**/*.pyc
+data/raw
+results/alignments
+results/quick
+results/full
+docs/*.pdf
+docs/*.pptx
+*.zip
