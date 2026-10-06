@@ -4,9 +4,9 @@ AITU Introduction to Bioinformatics, Project 15. Team: **Zhaulybaeva Gaukhar and
 
 The advisor selects a platform, read length and planned depth under a budget. It shows the equations, editable costs, alternatives and limits of its evidence. Real bacterial Illumina and Nanopore reads support reference-coverage saturation experiments. Statistical detection support and other application recommendations are explicitly labeled planning models.
 
-Submission documents: [10-page report](docs/report.pdf), [12-slide presentation with bilingual speaker notes](docs/presentation.pptx), [Russian defense guide](docs/DEFENSE_GUIDE_RU.md), and [simple GitHub upload instructions](docs/GITHUB_SIMPLE_RU.md).
+Submission documents: [report with team responsibilities and Appendix A: AI assistance](docs/report.pdf), [12-slide presentation with bilingual speaker notes](docs/presentation.pptx), and [contribution record](docs/CONTRIBUTIONS.md).
 
-Separate team uploads matching the report: [step-by-step team upload](docs/GITHUB_TEAM_UPLOAD_RU.md), [Gaukhar's tasks](docs/GAUKHAR_TASKS_RU.md), [Dilyara's tasks](docs/DILYARA_TASKS_RU.md). Each member can run her own test launcher (`CHECK_GAUKHAR.cmd` / `CHECK_DILYARA.cmd`) from the complete project and document her actual results. Upload attribution is distinct from independently completed technical work; AI assistance remains disclosed.
+Each member can run her own test launcher (`CHECK_GAUKHAR.cmd` / `CHECK_DILYARA.cmd`) from the complete project and document her actual results. The launchers save execution records in `results/reviews/`. Repository uploads and independent technical checks are recorded separately; AI assistance is disclosed in Appendix A of the report.
 
 ## Launch in under ten steps
 
@@ -82,6 +82,7 @@ python -m unittest discover -s tests -v
 python advisor.py --organism bacteria --application variant --budget 1200 --samples 6
 ```
 
-`pipeline.py` handles FASTQ QC, paired identities, SAM/CIGAR coverage and nested experiments. `advisor.py` contains the transparent recommendation model. `config/costs.json` contains source-backed components and clearly labeled assumptions. `scripts/metadata_mine.py` streams metadata. `docs/` contains scientific sources, rubric audit, Russian defense guide and GitHub instructions.
+`pipeline.py` handles FASTQ QC, paired identities, SAM/CIGAR coverage and nested experiments. `advisor.py` contains the transparent recommendation model. `config/costs.json` contains source-backed components and clearly labeled assumptions. `scripts/metadata_mine.py` streams metadata. `docs/` contains the report, presentation, contribution record, scientific sources and alignment methods.
 
-Large reads and alignments stay outside Git. Include the small real `data/example/` fixture, compact result JSON/CSV, source code, report and slides. Both partners must make actual technical contributions and explain all components; AI assistance is disclosed in `docs/AI_DISCLOSURE.md`.
+Large reads and alignments stay outside Git. Include the small real `data/example/` fixture, compact result JSON/CSV, source code, report and slides. Both partners must make actual technical contributions and explain all components; Appendix A of the report describes the AI assistance used.
+compact result JSON/CSV, source code, report and slides. Both partners must make actual technical contributions and explain all components; AI assistance is disclosed in `docs/AI_DISCLOSURE.md`.
