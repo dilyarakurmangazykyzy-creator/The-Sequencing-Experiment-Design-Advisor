@@ -1,0 +1,105 @@
+"""Actual aligner workflow; optional full-scale route, NOT a claimed completed run.
+
+Run from repository root:
+  snakemake --snakefile workflow/Snakefile --cores 4 --use-conda
+
+FASTQ pairs use the same stable molecule hash. Every replicate is mapped with
+fixed minimap2 parameters to test reference depth rather than alter the aligner.
+"""
+configfile: "workflow/config.yaml"
+PLATFORMS = ["illumina", "nanopore"]
+SEEDS = [str(s) for s in config["seeds"]]
+FRACTIONS = [str(f) for f in config["fractions"]]
+
+rule all:
+    input:
+        "results/full_workflow_summary.json"
+
+rule illumina_qc:
+    input:
+        r1=config["illumina_r1"], r2=config["illumina_r2"]
+    output:
+        r1=temp("results/full/illumina/filtered_R1.fastq.gz"),
+        r2=temp("results/full/illumina/filtered_R2.fastq.gz"),
+        json="results/full/illumina/fastp.json", html="results/full/illumina/fastp.html"
+    threads: config["threads"]
+    conda: "environment.yaml"
+    shell:
+        "fastp -i {input.r1:q} -I {input.r2:q} -o {output.r1:q} -O {output.r2:q} "
+        "--detect_adapter_for_pe --cut_tail --cut_tail_window_size 1 --cut_tail_mean_quality 20 "
+        "--length_required 50 --qualified_quality_phred 20 --unqualified_percent_limit 40 "
+        "--n_base_limit 2 --thread {threads} --json {output.json:q} --html {output.html:q}"
+
+rule nanopore_qc:
+    input: config["nanopore"]
+    output:
+        reads=temp("results/full/nanopore/filtered.fastq.gz"),
+        audit="results/full/nanopore/qc.json"
+    conda: "environment.yaml"
+    shell:
+        "python workflow/prepare_fastq.py --input {input:q} --output {output.reads:q} --audit {output.audit:q}"
+
+rule sample_illumina:
+    input:
+        r1="results/full/illumina/filtered_R1.fastq.gz",
+        r2="results/full/illumina/filtered_R2.fastq.gz"
+    output:
+        r1=temp("results/full/illumina/{seed}/{fraction}/R1.fastq.gz"),
+        r2=temp("results/full/illumina/{seed}/{fraction}/R2.fastq.gz")
+    conda: "environment.yaml"
+    shell:
+        "python workflow/downsample.py --input {input.r1:q} --mate {input.r2:q} "
+        "--output {output.r1:q} --output-mate {output.r2:q} --seed {wildcards.seed} --fraction {wildcards.fraction}"
+
+rule sample_nanopore:
+    input: "results/full/nanopore/filtered.fastq.gz"
+    output: temp("results/full/nanopore/{seed}/{fraction}/reads.fastq.gz")
+    conda: "environment.yaml"
+    shell:
+        "python workflow/downsample.py --input {input:q} --output {output:q} "
+        "--seed {wildcards.seed} --fraction {wildcards.fraction}"
+
+rule map_illumina:
+    input:
+        ref=config["reference"],
+        r1="results/full/illumina/{seed}/{fraction}/R1.fastq.gz",
+        r2="results/full/illumina/{seed}/{fraction}/R2.fastq.gz"
+    output: temp("results/full/illumina/{seed}/{fraction}/mapping.bam")
+    threads: config["threads"]
+    benchmark: "results/full/illumina/{seed}/{fraction}/alignment_resources.tsv"
+    conda: "environment.yaml"
+    shell:
+        "minimap2 -ax sr -t {threads} {input.ref:q} {input.r1:q} {input.r2:q} "
+        "| samtools sort -@ {threads} -O BAM -o {output:q} -"
+
+rule map_nanopore:
+    input: ref=config["reference"], reads="results/full/nanopore/{seed}/{fraction}/reads.fastq.gz"
+    output: temp("results/full/nanopore/{seed}/{fraction}/mapping.bam")
+    threads: config["threads"]
+    benchmark: "results/full/nanopore/{seed}/{fraction}/alignment_resources.tsv"
+    conda: "environment.yaml"
+    shell:
+        "minimap2 -ax map-ont -t {threads} {input.ref:q} {input.reads:q} "
+        "| samtools sort -@ {threads} -O BAM -o {output:q} -"
+
+rule depth:
+    input: "results/full/{platform}/{seed}/{fraction}/mapping.bam"
+    output: "results/full/{platform}/{seed}/{fraction}/metrics.json"
+    params: mapq=config["mapq"]
+    conda: "environment.yaml"
+    shell:
+        "samtools depth -aa -Q {params.mapq} -G 0x904 {input:q} "
+        "| python workflow/depth_metrics.py --bam {input:q} --output {output:q} "
+        "--platform {wildcards.platform} --seed {wildcards.seed} --fraction {wildcards.fraction}"
+
+rule summarise:
+    input: expand("results/full/{platform}/{seed}/{fraction}/metrics.json", platform=PLATFORMS, seed=SEEDS, fraction=FRACTIONS)
+    output: "results/full_workflow_summary.json"
+    conda: "environment.yaml"
+    run:
+        import json
+        from pathlib import Path
+        records = [json.loads(Path(path).read_text()) for path in input]
+        payload = {"schema_version": 1, "method": "minimap2_sr_and_map_ont_samtools_depth", "replicates": records,
+                   "caveat": "Reference coverage only, not variant recall or assembly success. Fastp thresholds differ from the educational pilot; no duplicate marking and no paired-overlap correction are applied."}
+        Path(output[0]).write_text(json.dumps(payload, indent=2))

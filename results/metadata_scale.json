@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "input": "outputs/sequencing-advisor/data/raw/metadata_million.tsv",
+  "benchmarks": [
+    {
+      "rows": 1000,
+      "parse_and_aggregate_wall_seconds": 0.06285299999581184,
+      "records_per_second": 15910.139532983854,
+      "input_file_bytes": 124287318,
+      "peak_rss_mb": 34.56640625,
+      "memory_metric": "Peak process working set on Windows; peak RSS on Unix. Includes interpreter/modules and group/organism counters; input records are streamed.",
+      "algorithm": "Single TSV pass; grouped counters, no full table in memory.",
+      "memory_growth": "Proportional to distinct design groups plus organism names; run rows are not retained.",
+      "linear_parse_only_projection_10million_rows_seconds": 628.5299999581184,
+      "projection_caveat": "Extrapolation from observed rows, not a measured10million run; hardware, IO, group cardinality and API acquisition can change scaling.",
+      "child_process_wall_seconds_including_startup": 0.9130648999998812
+    },
+    {
+      "rows": 10000,
+      "parse_and_aggregate_wall_seconds": 0.5304813999973703,
+      "records_per_second": 18850.80230909052,
+      "input_file_bytes": 124287318,
+      "peak_rss_mb": 34.66015625,
+      "memory_metric": "Peak process working set on Windows; peak RSS on Unix. Includes interpreter/modules and group/organism counters; input records are streamed.",
+      "algorithm": "Single TSV pass; grouped counters, no full table in memory.",
+      "memory_growth": "Proportional to distinct design groups plus organism names; run rows are not retained.",
+      "linear_parse_only_projection_10million_rows_seconds": 530.4813999973703,
+      "projection_caveat": "Extrapolation from observed rows, not a measured10million run; hardware, IO, group cardinality and API acquisition can change scaling.",
+      "child_process_wall_seconds_including_startup": 1.4337977999966824
+    },
+    {
+      "rows": 100000,
+      "parse_and_aggregate_wall_seconds": 4.9664006999955745,
+      "records_per_second": 20135.3064403541,
+      "input_file_bytes": 124287318,
+      "peak_rss_mb": 34.95703125,
+      "memory_metric": "Peak process working set on Windows; peak RSS on Unix. Includes interpreter/modules and group/organism counters; input records are streamed.",
+      "algorithm": "Single TSV pass; grouped counters, no full table in memory.",
+      "memory_growth": "Proportional to distinct design groups plus organism names; run rows are not retained.",
+      "linear_parse_only_projection_10million_rows_seconds": 496.64006999955745,
+      "projection_caveat": "Extrapolation from observed rows, not a measured10million run; hardware, IO, group cardinality and API acquisition can change scaling.",
+      "child_process_wall_seconds_including_startup": 5.730300800001714
+    },
+    {
+      "rows": 999988,
+      "parse_and_aggregate_wall_seconds": 50.39908529999957,
+      "records_per_second": 19841.391843673173,
+      "input_file_bytes": 124287318,
+      "peak_rss_mb": 36.82421875,
+      "memory_metric": "Peak process working set on Windows; peak RSS on Unix. Includes interpreter/modules and group/organism counters; input records are streamed.",
+      "algorithm": "Single TSV pass; grouped counters, no full table in memory.",
+      "memory_growth": "Proportional to distinct design groups plus organism names; run rows are not retained.",
+      "linear_parse_only_projection_10million_rows_seconds": 503.9969009628073,
+      "projection_caveat": "Extrapolation from observed rows, not a measured10million run; hardware, IO, group cardinality and API acquisition can change scaling."
+    }
+  ],
+  "scope": "Ordered input prefixes in separate processes; computational performance, not probability-sampled biological designs.",
+  "caveat": "Parse time excludes network acquisition and result JSON writing. Fresh-process peak RSS includes module startup. Full input measurement is reused from the primary aggregate run; full run need not represent the entire archive."
+}

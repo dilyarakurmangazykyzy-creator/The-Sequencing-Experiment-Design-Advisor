@@ -1,0 +1,26 @@
+metric	unit	illumina	nanopore	interpretation
+Raw physical reads	reads	800000	60000	Both Illumina mates count as separate reads.
+Raw bases examined	bp	194530654	212067909	Only acquired/examined records, not the entire archived run.
+Raw mean read length	bp	243.1633175	3534.46515	Measured from physical FASTQ reads; independent of archive count-unit ambiguity.
+Raw median read length	bp	251	1848	Empirical lower quantile from exact length histogram.
+Raw mean Phred	Phred	32.75638645105259	39.97622816661054	Decoded from Phred+33; mean score, not an independently validated sequencing-error rate.
+Raw Q20 base fraction	fraction	0.847355399319225	0.9457531926718813	Fraction of bases with recorded Phred >=20.
+Raw Q30 base fraction	fraction	0.7849718481900544	0.8938821337649913	Fraction of bases with recorded Phred >=30.
+Raw GC fraction	fraction	0.5105672566492236	0.5158966555378258	GC among A/C/G/T bases; N excluded from denominator.
+Raw N fraction	fraction	1.1843891708707257e-05	0.0	N among all sequenced bases.
+Illumina adapter prefix signal	fraction of reads	0.0	3.3333333333333335e-05	Common Illumina12-base motif; ONT value is a background motif audit, not an ONT adapter screen.
+Identical-sequence sample fraction	fraction	0.004530000000000034	0.0006333333333333746	First100000 sequences; PCR and biological duplicates cannot be separated.
+Raw identifier units examined	molecule identifiers	400000	60000	Both mates share one selection key; a key is not proof of an independent DNA molecule.
+Retained identifier units	molecule identifiers	384691	50175	Both mates rejected if either fails eligibility.
+QC-audited retained reads	reads	769382	50175	Audit-trimmed sequences describe QC; externally supplied raw SAM is not re-aligned.
+QC-audited mean read length	bp	242.24211639991577	4167.260328849028	Internal audit after eligibility/trimming; not external SAM query length.
+QC-audited mean Phred	Phred	33.17740062326667	40.02598099182874	Decoded from Phred+33; internal retained-sequence audit; ONT is not short-read tail-trimmed.
+Mapped primary reads	reads	766320	50166	Includes low-MAPQ mapped primary records.
+Primary mapping rate	fraction	0.9960201824321339	0.9998206278026905	Mapped primary reads divided by primary reads of retained identifiers.
+Mean mapped-read MAPQ	MAPQ	58.26129815220796	59.81411713112467	Available mapped primary MAPQ;255 excluded. Placement confidence, not calibrated truth.
+Mean edit distance per aligned query base	NM/(M+I+=+X)	0.009523120025227733	0.006076388638407998	Sequencing errors and biological reference differences are confounded; not base-error truth.
+Nominal retained depth	x	40.345998579815976	45.0469546187435	Original retained raw bases/reference length in external SAM mode.
+MAPQ-filtered mean mapped depth	x	38.241437100411666	44.706079214900214	Primary matching CIGAR positions after coverage filters; paired overlaps count twice.
+Reference breadth >=1x	fraction	0.9913787160261045	0.9993782386098743	Confidence-filtered aligned-read depth endpoint, not variant recall.
+Reference breadth >=5x	fraction	0.9876313433234547	0.9971124504809925	At least5 aligned observations; independent-molecule count is unknown.
+Reference breadth >=10x	fraction	0.9845382635320356	0.985503221697792	At least10 aligned observations; no caller or assembly truth benchmark.

@@ -1,0 +1,3 @@
+run_accession	study_accession	sample_accession	scientific_name	instrument_platform	instrument_model	library_layout	library_strategy	read_count	base_count	fastq_ftp	fastq_bytes	first_public
+SRR1030394	PRJNA227741	SAMN02401358	Escherichia coli str. K-12 substr. MG1655	ILLUMINA	Illumina MiSeq	PAIRED	WGS	2720956	1322136908	ftp.sra.ebi.ac.uk/vol1/fastq/SRR103/004/SRR1030394/SRR1030394_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR103/004/SRR1030394/SRR1030394_2.fastq.gz	492477762;558572098	2014-11-27
+SRR33602302	PRJNA1222438	SAMN48541625	Escherichia coli str. K-12 substr. MG1655	OXFORD_NANOPORE	GridION	SINGLE	WGA	115315	410399976	ftp.sra.ebi.ac.uk/vol1/fastq/SRR336/002/SRR33602302/SRR33602302_1.fastq.gz	388527110	2025-05-24

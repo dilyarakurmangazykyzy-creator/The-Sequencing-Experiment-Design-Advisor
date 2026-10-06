@@ -1,0 +1,24 @@
+[M::mm_idx_gen::0.213] collected minimizers
+[M::mm_idx_gen::0.279] sorted minimizers
+[M::main::0.280] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.280] mid_occ = 1000
+[M::mm_idx_stat] kmer size: 21; skip: 11; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.298] distinct minimizers: 757233 (99.27% are singletons); average occurrences: 1.021; average spacing: 6.004; total length: 4641652
+[M::worker_pipeline::32.682] mapped 205538 sequences
+[M::worker_pipeline::80.223] mapped 205648 sequences
+[M::worker_pipeline::141.336] mapped 205606 sequences
+[M::worker_pipeline::181.315] mapped 183208 sequences
+[M::main] Version: 2.22-r1101
+[M::main] CMD: ./this.program -ax sr -t 1 --secondary=no /input/reference.fasta /input/reads_illumina_R1.fastq.gz /input/reads_illumina_R2.fastq.gz
+[M::main] Real time: 181.352 sec
+
+[M::mm_idx_gen::0.329] collected minimizers
+[M::mm_idx_gen::0.491] sorted minimizers
+[M::main::0.493] loaded/built the index for 1 target sequence(s)
+[M::mm_mapopt_update::0.536] mid_occ = 12
+[M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+[M::mm_idx_stat::0.561] distinct minimizers: 838542 (98.18% are singletons); average occurrences: 1.034; average spacing: 5.352; total length: 4641652
+[M::worker_pipeline::221.906] mapped 60000 sequences
+[M::main] Version: 2.22-r1101
+[M::main] CMD: ./this.program -ax map-ont -t 1 --secondary=no /input/reference.fasta /input/reads_nanopore.fastq.gz
+[M::main] Real time: 221.926 sec

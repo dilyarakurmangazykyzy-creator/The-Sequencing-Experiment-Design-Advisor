@@ -1,0 +1,31 @@
+{
+  "illumina": {
+    "args": [
+      "-ax",
+      "sr",
+      "-t",
+      "1",
+      "--secondary=no",
+      "outputs/sequencing-advisor/data/raw/reference.fasta",
+      "outputs/sequencing-advisor/data/raw/reads_illumina_R1.fastq.gz",
+      "outputs/sequencing-advisor/data/raw/reads_illumina_R2.fastq.gz"
+    ],
+    "wasm_version": "minimap2 2.22 biowasm",
+    "elapsed_seconds": 181.378,
+    "node_rss_at_completion_bytes": 294453248
+  },
+  "nanopore": {
+    "args": [
+      "-ax",
+      "map-ont",
+      "-t",
+      "1",
+      "--secondary=no",
+      "outputs/sequencing-advisor/data/raw/reference.fasta",
+      "outputs/sequencing-advisor/data/raw/reads_nanopore.fastq.gz"
+    ],
+    "wasm_version": "minimap2 2.22 biowasm",
+    "elapsed_seconds": 221.944,
+    "node_rss_at_completion_bytes": 694546432
+  }
+}

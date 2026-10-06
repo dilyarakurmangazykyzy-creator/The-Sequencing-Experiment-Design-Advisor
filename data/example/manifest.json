@@ -1,0 +1,25 @@
+{
+  "source_manifest": "../raw/manifest.json",
+  "real_data": true,
+  "files": [
+    {
+      "file": "reads_illumina_R1.fastq.gz",
+      "records": 400,
+      "sha256": "35f09425792d76524953b183decbc8330a1e3220c1cacd34eab3141116689520",
+      "selection": "prefix of acquired real archive prefix; test fixture, not a simulated dataset"
+    },
+    {
+      "file": "reads_illumina_R2.fastq.gz",
+      "records": 400,
+      "sha256": "c517d4220a387db57e85844bf7655d01aeea668db6637312de111119733eb622",
+      "selection": "prefix of acquired real archive prefix; test fixture, not a simulated dataset"
+    },
+    {
+      "file": "reads_nanopore.fastq.gz",
+      "records": 200,
+      "sha256": "9998714770af89578f22942ae94b0326912f4c4c13197600e774d046f9ec881f",
+      "selection": "prefix of acquired real archive prefix; test fixture, not a simulated dataset"
+    }
+  ],
+  "reference_accession": "U00096.3"
+}

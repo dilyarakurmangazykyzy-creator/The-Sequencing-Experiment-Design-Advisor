@@ -1,0 +1,15 @@
+{
+  "url": "https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&query=first_public%3E%3D2015-01-01+AND+first_public%3C%3D2025-12-31&fields=run_accession%2Cstudy_accession%2Csample_accession%2Cscientific_name%2Cinstrument_platform%2Cinstrument_model%2Clibrary_strategy%2Clibrary_layout%2Cfirst_public%2Cread_count%2Cbase_count&format=tsv&limit=1000000",
+  "parameters": {
+    "result": "read_run",
+    "query": "first_public>=2015-01-01 AND first_public<=2025-12-31",
+    "fields": "run_accession,study_accession,sample_accession,scientific_name,instrument_platform,instrument_model,library_strategy,library_layout,first_public,read_count,base_count",
+    "format": "tsv",
+    "limit": 1000000
+  },
+  "retrieved_utc": "2026-10-06T14:37:33.762641+00:00",
+  "bytes": 124287318,
+  "sha256": "ea2f53e8a3417ef7c0e92505371c7e290216e94e2e36daa788b3fed42edc319e",
+  "scope": "Bounded ENA Portal API query response; actual rows are measured during aggregation.",
+  "documentation": "https://ena-docs.readthedocs.io/en/latest/retrieval/programmatic-access/advanced-search.html"
+}

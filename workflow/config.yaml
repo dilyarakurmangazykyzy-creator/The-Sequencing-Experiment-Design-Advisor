@@ -1,0 +1,9 @@
+# Copy and adjust paths for full archived files, not just the acquired pilot.
+reference: data/raw/reference.fasta
+illumina_r1: data/raw/reads_illumina_R1.fastq.gz
+illumina_r2: data/raw/reads_illumina_R2.fastq.gz
+nanopore: data/raw/reads_nanopore.fastq.gz
+threads: 4
+seeds: [17, 29, 43]
+fractions: [0.05, 0.1, 0.25, 0.5, 0.75, 1.0]
+mapq: 20

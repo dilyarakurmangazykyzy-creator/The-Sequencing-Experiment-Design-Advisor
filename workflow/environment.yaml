@@ -1,0 +1,12 @@
+name: sequencing-advisor-full
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.12.9
+  - snakemake-minimal=8.30.0
+  - minimap2=2.22
+  - samtools=1.21
+  - fastp=0.24.0
+  - numpy=2.2.3
+  - pyyaml=6.0.2

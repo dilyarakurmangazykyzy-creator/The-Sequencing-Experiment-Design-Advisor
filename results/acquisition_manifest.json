@@ -1,0 +1,88 @@
+{
+  "retrieved_utc": "2026-10-06T14:09:59.981265+00:00",
+  "runs": [
+    {
+      "run_accession": "SRR1030394",
+      "study_accession": "PRJNA227741",
+      "sample_accession": "SAMN02401358",
+      "scientific_name": "Escherichia coli str. K-12 substr. MG1655",
+      "instrument_platform": "ILLUMINA",
+      "instrument_model": "Illumina MiSeq",
+      "library_layout": "PAIRED",
+      "library_strategy": "WGS",
+      "read_count": "2720956",
+      "base_count": "1322136908",
+      "fastq_ftp": "ftp.sra.ebi.ac.uk/vol1/fastq/SRR103/004/SRR1030394/SRR1030394_1.fastq.gz;ftp.sra.ebi.ac.uk/vol1/fastq/SRR103/004/SRR1030394/SRR1030394_2.fastq.gz",
+      "fastq_bytes": "492477762;558572098",
+      "first_public": "2014-11-27"
+    },
+    {
+      "run_accession": "SRR33602302",
+      "study_accession": "PRJNA1222438",
+      "sample_accession": "SAMN48541625",
+      "scientific_name": "Escherichia coli str. K-12 substr. MG1655",
+      "instrument_platform": "OXFORD_NANOPORE",
+      "instrument_model": "GridION",
+      "library_layout": "SINGLE",
+      "library_strategy": "WGA",
+      "read_count": "115315",
+      "base_count": "410399976",
+      "fastq_ftp": "ftp.sra.ebi.ac.uk/vol1/fastq/SRR336/002/SRR33602302/SRR33602302_1.fastq.gz",
+      "fastq_bytes": "388527110",
+      "first_public": "2025-05-24"
+    }
+  ],
+  "metadata_urls": [
+    "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=SRR1030394&result=read_run&fields=run_accession%2Cstudy_accession%2Csample_accession%2Cscientific_name%2Cinstrument_platform%2Cinstrument_model%2Clibrary_layout%2Clibrary_strategy%2Cread_count%2Cbase_count%2Cfastq_ftp%2Cfastq_bytes%2Cfirst_public&format=tsv",
+    "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=SRR33602302&result=read_run&fields=run_accession%2Cstudy_accession%2Csample_accession%2Cscientific_name%2Cinstrument_platform%2Cinstrument_model%2Clibrary_layout%2Clibrary_strategy%2Cread_count%2Cbase_count%2Cfastq_ftp%2Cfastq_bytes%2Cfirst_public&format=tsv"
+  ],
+  "files": [
+    {
+      "file": "reads_illumina_R1.fastq.gz",
+      "source_url": "https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR103/004/SRR1030394/SRR1030394_1.fastq.gz",
+      "records": 400000,
+      "bases": 97168767,
+      "selection": "first N archived records; prefix acquisition is not a random whole-run sample",
+      "sha256": "5397149bafe4cdbe1b9974af017e4ccd636ff1d21de82b5dcabe4dc7463ba9a2",
+      "elapsed_seconds": 314.798,
+      "archive_checksum_verified": false
+    },
+    {
+      "file": "reads_illumina_R2.fastq.gz",
+      "source_url": "https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR103/004/SRR1030394/SRR1030394_2.fastq.gz",
+      "records": 400000,
+      "bases": 97361887,
+      "selection": "first N archived records; prefix acquisition is not a random whole-run sample",
+      "sha256": "f8314ad2acc7521a1530f27de962ed0c18057be607590a860d6a960a60737753",
+      "elapsed_seconds": 229.791,
+      "archive_checksum_verified": false
+    },
+    {
+      "file": "reads_nanopore.fastq.gz",
+      "source_url": "https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR336/002/SRR33602302/SRR33602302_1.fastq.gz",
+      "records": 60000,
+      "bases": 212067909,
+      "selection": "first N archived records; prefix acquisition is not a random whole-run sample",
+      "sha256": "f3f414f3402f17e717037aeddc60f88806a141641eaac94b15bbeecc560757b4",
+      "elapsed_seconds": 457.6,
+      "archive_checksum_verified": false
+    },
+    {
+      "file": "reference.fasta",
+      "source_url": "https://www.ebi.ac.uk/ena/browser/api/fasta/U00096.3?download=false",
+      "accession": "U00096.3",
+      "refseq_counterpart": "NC_000913.3",
+      "sha256": "c41a4207c8916ba6138460d129ce5604cb307d40b7d56207878a9e731a418074"
+    }
+  ],
+  "metadata": {
+    "source_url": "https://www.ebi.ac.uk/ena/portal/api/search?result=read_run&query=first_public%3E%3D2015-01-01+AND+first_public%3C%3D2025-12-31+AND+%28instrument_platform%3D%22ILLUMINA%22+OR+instrument_platform%3D%22OXFORD_NANOPORE%22+OR+instrument_platform%3D%22PACBIO_SMRT%22%29&fields=run_accession%2Cstudy_accession%2Csample_accession%2Cscientific_name%2Cinstrument_platform%2Cinstrument_model%2Clibrary_layout%2Clibrary_strategy%2Cread_count%2Cbase_count%2Cfirst_public&format=tsv&limit=100000",
+    "query": "first_public>=2015-01-01 AND first_public<=2025-12-31 AND (instrument_platform=\"ILLUMINA\" OR instrument_platform=\"OXFORD_NANOPORE\" OR instrument_platform=\"PACBIO_SMRT\")",
+    "requested_limit": 100000,
+    "rows": 100000,
+    "sha256": "c7a5e6fc2c619615385c0906c9b6a209d659797c9697419ef5ebb592efa6d483",
+    "elapsed_seconds": 50.591,
+    "sampling": "bounded unsorted ENA query; descriptive archive subset, not representative prevalence"
+  },
+  "comparability": "Same named MG1655 strain, different BioSamples/studies/years and WGS versus WGA. Observed difference cannot be attributed to platform alone."
+}
